@@ -7,8 +7,7 @@ class NotificationHelper {
   static Future<void> init() async {
     await _notificaciones
         .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin
-        >()
+            AndroidFlutterLocalNotificationsPlugin>()
         ?.requestNotificationsPermission();
 
     const androidInit = AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -50,12 +49,11 @@ class NotificationHelper {
     );
   }
 
-  // 2. CANCELAR NOTIFICACIÓN
   static Future<void> cancelarNotificacionTimer() async {
     await _notificaciones.cancel(10);
   }
 
-  // 3. ALERTA DE FIN DE CICLO
+  // Alerta de fin de ciclo con vibración
   static Future<void> mostrarAlertaCiclo(String mensaje) async {
     const androidDetails = AndroidNotificationDetails(
       'canal_alertas',
@@ -64,12 +62,19 @@ class NotificationHelper {
       importance: Importance.max,
       priority: Priority.high,
       playSound: true,
+      enableVibration: true,
     );
 
     const details = NotificationDetails(android: androidDetails);
-    await _notificaciones.show(11, '¡Ciclo Finalizado!', mensaje, details);
+    await _notificaciones.show(
+      11, 
+      '¡Ciclo Finalizado!',
+      mensaje,
+      details,
+    );
   }
 
+  // Para futuras notis de tareas y así
   static Future<void> mostrarNotificacion({
     required int id,
     required String titulo,

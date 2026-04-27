@@ -10,19 +10,16 @@ class BurbujaContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(30), // Bordes súper redondos
+      borderRadius: BorderRadius.circular(30),
       child: BackdropFilter(
-        filter: ImageFilter.blur(
-          sigmaX: 15,
-          sigmaY: 15,
-        ), // El efecto cristal/Aero
+        filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
         child: Container(
           padding: EdgeInsets.all(padding),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.15), // Translúcido
+            color: Colors.white.withOpacity(0.15),
             borderRadius: BorderRadius.circular(30),
             border: Border.all(
-              color: Colors.white.withOpacity(0.4), // Borde brillante
+              color: Colors.white.withOpacity(0.4),
               width: 1.5,
             ),
             boxShadow: [
