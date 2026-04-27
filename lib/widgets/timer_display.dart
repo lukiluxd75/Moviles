@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TimerDisplay extends StatelessWidget {
-  final double progreso;
+  final double progreso; // 0.0 = vacío, 1.0 = lleno (usado al revés)
   final String tiempoFormateado;
   final bool esDescanso;
 
@@ -21,7 +21,7 @@ class TimerDisplay extends StatelessWidget {
           width: 250,
           height: 250,
           child: CircularProgressIndicator(
-            value: progreso,
+            value: 1 - progreso, // llena a medida que avanza el tiempo
             strokeWidth: 12,
             backgroundColor: Colors.grey.shade200,
             color: esDescanso ? Colors.green : Colors.deepPurple,
@@ -29,7 +29,11 @@ class TimerDisplay extends StatelessWidget {
         ),
         Text(
           tiempoFormateado,
-          style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            fontSize: 48,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
       ],
     );
